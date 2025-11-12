@@ -1,7 +1,7 @@
 import dash
 from dash import dcc, html, Input, Output
 import plotly.graph_objects as go
- 
+
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
@@ -74,4 +74,6 @@ def update_chart(s, P_L_given_Y, P_Y):
     return fig, f"P(Ī|Y) = {P_notL_given_Y:.3f}    |    P(Ȳ) = {P_notY:.3f}    |    q = {q:.3f}"
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 8050))
+    app.run(host="0.0.0.0", port=port, debug=False)
